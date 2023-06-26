@@ -3,26 +3,42 @@ package com.HarmyFounder.HIeffect.models;
 import jakarta.persistence.*;
 
 @Entity
-public class Note {
+public class Task {
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
-    private String text;
+    private String description;
     private String tag;
+    private TaskStatus taskStatus;
+    private int statusKey;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User author;
 
-    public Note() {
+    public Task() {
     }
 
-    public Note(String title, String text, String tag) {
+    public Task(String title, String description, String tag, TaskStatus status) {
         this.title = title;
-        this.text = text;
+        this.description = description;
         this.tag = tag;
+        this.taskStatus = status;
+    }
+
+    public int getStatusKey() {
+        return statusKey;
+    }
+
+    public void setStatusKey(int statusKey) {
+        this.statusKey = statusKey;
     }
 
     public User getAuthor() {
@@ -41,12 +57,12 @@ public class Note {
         this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTag() {
@@ -55,6 +71,14 @@ public class Note {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus status) {
+        this.taskStatus = status;
     }
 
     public void setId(Long id) {

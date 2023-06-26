@@ -36,7 +36,7 @@ public class NoteService {
         }
     }
 
-    public void delete(Note note){
+    public void delete(Note note) {
         noteRepository.delete(note);
     }
 
