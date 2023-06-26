@@ -1,8 +1,11 @@
 package com.HarmyFounder.HIeffect.controllers;
 
 import com.HarmyFounder.HIeffect.models.Note;
+import com.HarmyFounder.HIeffect.models.User;
+import com.HarmyFounder.HIeffect.services.FavoritesService;
 import com.HarmyFounder.HIeffect.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +16,9 @@ public class NoteController {
 
     @Autowired
     private NoteService noteService;
+
+    @Autowired
+    private FavoritesService favoritesService;
 
     @GetMapping("/all")
     public List<Note> getAllNotes() {
@@ -43,4 +49,11 @@ public class NoteController {
     public void deleteNote(@PathVariable("id") Note note) {
         noteService.delete(note);
     }
+
+    @GetMapping("/favorites")
+    public List<Note> getFavorites(@AuthenticationPrincipal User user){
+        return favoritesService.getFavorites(user);
+    }
+
+
 }
