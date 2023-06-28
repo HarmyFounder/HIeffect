@@ -45,7 +45,7 @@ public class TaskService {
     }
 
     public Task update(Task taskToBeUpdated, Task updatedTask){
-        BeanUtils.copyProperties(updatedTask,taskToBeUpdated);
+        BeanUtils.copyProperties(updatedTask,taskToBeUpdated,"id");
         return taskRepository.save(taskToBeUpdated);
     }
 
