@@ -53,7 +53,9 @@ public class MeetingController {
 
     @PostMapping("/findByAuthor/{id}")
     public List<Meeting> getByAuthor(@PathVariable("id")User author){
-        return meetingService.getByAssigned(author);
+        return meetingService.getByAuthor(author);
     }
+
+
 
 }
