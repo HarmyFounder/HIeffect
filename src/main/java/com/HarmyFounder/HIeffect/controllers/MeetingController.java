@@ -4,7 +4,6 @@ import com.HarmyFounder.HIeffect.models.Meeting;
 import com.HarmyFounder.HIeffect.models.User;
 import com.HarmyFounder.HIeffect.services.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
