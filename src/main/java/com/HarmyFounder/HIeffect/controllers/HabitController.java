@@ -1,11 +1,15 @@
 package com.HarmyFounder.HIeffect.controllers;
 
 import com.HarmyFounder.HIeffect.models.Habit;
+import com.HarmyFounder.HIeffect.models.User;
 import com.HarmyFounder.HIeffect.services.HabitService;
+import com.HarmyFounder.HIeffect.services.MailSendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 @Controller
@@ -14,6 +18,9 @@ public class HabitController {
 
     @Autowired
     private HabitService habitService;
+
+    @Autowired
+    private MailSendService mailSendService;
 
     @GetMapping("/all")
     public List<Habit> getAll() {
@@ -43,6 +50,11 @@ public class HabitController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Habit habit) {
         habitService.delete(habit);
+    }
+
+    @PostMapping("/notifications")
+    public void setHabitNotifications(@AuthenticationPrincipal User user, @RequestParam int hour, @RequestParam int minute) throws MessagingException {
+        mailSendService.sendMessageNotification(user, hour, minute);
     }
 
 }
