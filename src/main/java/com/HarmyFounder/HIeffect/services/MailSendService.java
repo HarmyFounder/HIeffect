@@ -49,7 +49,7 @@ public class MailSendService {
         message.setText(user.getHabits().toString());
 
         while (true) {
-            if (LocalTime.now().getHour() == hour && LocalTime.now().getMinute() == minute) {
+            if (LocalTime.now().getHour() == hour && LocalTime.now().getMinute() == minute && LocalTime.now().getSecond() == 1) {
                 Transport.send(message);
             }
         }
