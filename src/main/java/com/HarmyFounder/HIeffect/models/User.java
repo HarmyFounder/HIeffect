@@ -30,6 +30,28 @@ public class User {
     @OneToMany(mappedBy = "author")
     private List<Habit> habits;
 
+    @OneToMany(mappedBy = "author")
+    private List<Event> events;
+
+    @OneToMany(mappedBy = "author")
+    private List<Meeting> meetings;
+
+    public List<Meeting> getMeetings() {
+        return meetings;
+    }
+
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings = meetings;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
     public List<Habit> getHabits() {
         return habits;
     }
